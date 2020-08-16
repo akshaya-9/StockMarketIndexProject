@@ -1,0 +1,205 @@
+<div  *ngIf='!login();  else elseBlock'>
+
+<button class="button1" onclick="document.getElementById('id02').style.display='block'" style="width:auto; float: right;     margin-right: 69px">Register</button>
+<button class="button1" onclick="document.getElementById('id01').style.display='block'" style="width:auto; float: right;     margin-right: 69px">Login</button>
+</div>
+<ng-template #elseBlock>
+<button class="button1"  style="width:auto; float: right;     margin-right: 69px">Logout</button>
+</ng-template>
+
+
+
+
+<div id="id02" class="modal">
+  
+  <form class="modal-content animate" action="/action_page.php" method="post" style="    width: 361px;     ">
+  
+
+    <div class="container" style="    width: 307px;">
+     <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn" style="  float:right; border:none">X</button>
+   
+     <label for="uname"  style="margin-top:10px;"><b>Username</b></label>
+      <input type="text" class="form-input" [(ngModel)]="userr.userName" placeholder="Enter Username" name="uname" required>
+    
+      <label for="email" style="margin-top:10px;"><b>Email</b></label>
+      <input type="text" class="form-input" [(ngModel)]="userr.email" placeholder="Enter Email" name="Email" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" class="form-input" [(ngModel)]="userr.password"placeholder="Enter Password" name="psw" required>
+        
+      <button type="submit" onclick="document.getElementById('id02').style.display='none'" class="btn" style="background-color: black; color: white; align-items: center;     margin-left: 98px;" (click) = "regSubmit()" >Register</button>
+     
+    </div>
+
+  
+  </form>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('id02');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+
+
+
+
+
+
+<div id="id01" class="modal">
+  
+  <form class="login-form"  #loginForm="ngForm"
+  (ngSubmit)="loginSubmit(loginForm.value)" novalidate style="    width: 361px; background-color: white;margin: auto;">
+  
+
+    <div class="container" style="    width: 307px;">
+     <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="  float:right; border:none">X</button>
+      
+     
+     <label for="email" style="margin-top:10px;"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" class="form-input" [(ngModel)]="user.email"   name="uname" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" class="form-input" [(ngModel)]="user.password"  required>
+        
+      <button type="submit" onclick="document.getElementById('id01').style.display='none'" class="btn" style="background-color: black; color: white; align-items: center;     margin-left: 98px;" >Login</button>
+     
+    </div>
+
+  
+  </form>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+
+
+
+
+
+
+    <div class="container">
+    <div class="dropdown"  style="    margin-left: 30px; margin-top: 30px;">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="padding-right:10px;">NSE
+        <span class="caret" style="margin-left:30px"></span></button>
+        <ul class="dropdown-menu">
+          <li><a href="#">BSE</a></li>
+         
+        </ul>
+      </div>
+    
+    <p style=" font-size: 28px;  margin-left: 30px;"><b>NIFTY 50</b></p>
+    <hr style=" border-top: 2px dashed grey;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <b style="    font-size: 50px;margin-left: 17px;">{{todayStock.open}}</b><br>
+                
+                <i class="fa fa-angle-up" style="font-size:40px;color: teal;"> </i>
+                <b style="color: teal;font-size: 25px;margin-left: 12px; margin-top: 3px;">23.40(0.21%)</b>
+                 <p class="gray">As on 13 Aug 2020 </p>
+            </div>
+            <div class="col-sm-5" style="    margin-left: 273px;font-size: 15px;">
+                <p class="gray"> Day Range</p>
+               <p class="gray" style="padding-top: 10px;">L</p> 
+               <h3 style="color : teal; margin-top: -40px;
+               margin-left: 127px;
+               margin-bottom: 15px;">	&#9679;</h3>
+               <hr style="border-top:2px solid black;     margin-top: -22px; margin-left: 26px; width: 401px">  <p class="gray" style="    float: right;margin-top: -31px;">H</p>
+               <p class="gray"> 52 Week Range</p>
+               <p class="gray" style="padding-top: 10px;">L</p> 
+               <h3 style="color : teal; margin-top: -40px;
+               margin-left: 133px;
+               margin-bottom: 15px;">	&#9679;</h3>
+               <hr style="border-top:2px solid black;     margin-top: -22px; margin-left: 26px; width: 401px">  <p class="gray" style="    float: right;margin-top: -31px;">H</p>
+            </div>
+        </div>
+        <hr style=" border-top: 2px dashed grey;">
+    </div>
+                <hr style=" border-top: 2px solid grey;">
+               <p class="gray">OVERVIEW</p> 
+                <div class="divider div-transparent div-arrow-down"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-5 " style="    margin-top: 23px;">
+                            <div  style="margin-bottom: -20px;">
+                                <p class="gray" style=" display:inline-block;    margin-right: 282px; margin-left: 24px">Open</p>
+                                <b style="display:inline-block;">{{todayStock.open}}</b></div>
+                                <hr style=" border-top: 1px solid grey;">
+
+                                <div  style="margin-bottom: -20px;">
+                                    <p class="gray" style=" display:inline-block;    margin-right: 230px; margin-left: 24px">Previously Close</p>
+                                    <b style="display:inline-block;">{{todayStock.close}}</b></div>
+                                    <hr style=" border-top: 1px solid grey;">
+
+                                <div  style="margin-bottom: -20px;">
+                                <p  class="gray" style=" display:inline-block;    margin-right: 282px; margin-left: 24px">Day High</p>
+                                <b style="display:inline-block;">{{todayStock.high}}</b></div>
+                                <hr style=" border-top: 1px solid grey;">
+                            </div>
+
+
+                            <div class="col-sm-5 " style="      margin-left: 156px; margin-top: 23px;">
+                                <div  style="margin-bottom: -20px;">
+                                    <p class="gray" style=" display:inline-block;    margin-right: 282px; margin-left: 24px">Day Low</p>
+                                    <b style="display:inline-block;">{{todayStock.low}}</b></div>
+                                    <hr style=" border-top: 1px solid grey;">
+                                    <div  style="margin-bottom: -20px;">
+                                    <p class="gray" style=" display:inline-block;    margin-right: 282px; margin-left: 24px">52 Week High</p>
+                                    <b style="display:inline-block;">11,535.30</b></div>
+                                    <hr style=" border-top: 1px solid grey;">
+                                    <div  style="margin-bottom: -20px;">
+                                    <p class="gray" style=" display:inline-block;    margin-right: 282px; margin-left: 24px">52 Week Low</p>
+                                    <b style="display:inline-block;">11,535.30</b></div>
+                                    <hr style=" border-top: 1px solid grey;">
+                                </div>
+                                
+                    </div>
+                </div>
+                <br>
+                <div class="container">
+                    <div class="chip">
+                        <div class="content">
+                            <div class="left">
+                                <p style="    margin-top: -62px;
+                                color: #acb0b3;
+                                font-size: 12px;">NSE</p>
+                                <p style="    margin-top: -34px;
+                                font-size: 24px;">NIFTY 50</p>
+                                <p style="    margin-left: -9px;    margin-top: -24px;
+                                font-size: 35px;"> 11,325.10</p>
+                            </div>
+                            <div class="right" style="float: right;
+                            margin-top: 101px;
+                            margin-right: -146px;">
+                                <p style="margin-top: -106px;color: #acb0b3;font-size: 12px;">PREV CLOSE</p>
+                                <p style="margin-top: -40px;">10,563.19</p>
+                            </div>
+                            <br>
+                            <div class="line"></div>
+                        </div>
+                    </div>
+                </div>
+<br>
+             
+         <br>
+         <br>
+    
+   
