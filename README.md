@@ -6,6 +6,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Eclipse Files ,run it with tomcat 8.5 version
 
+# Graph
+To implement graph npm install --save bootstrap@4 @ng-bootstrap/ng-bootstrap @swimlane/ngx-charts 
+in angular cli
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
