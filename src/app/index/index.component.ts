@@ -13,22 +13,32 @@ export class IndexComponent implements OnInit {
   address : any;
   containment : any;
   todayStock:any;
+  todayStockb: any;
+  todayStocka: any;
+  value:any;
   constructor(private router: Router , private service : ServiceService) {
     this.user = { email: '', password: '' };
-    this.todayStock = {date :'',adjClose :'',close:'',high:'',open:'',volume:''};
+    this.todayStock = {date :'',adjClose :'',close:'',high:'',open:'',volume:'',low:''};
     this.userr = {userId : "1" , userName : "" , email : "" , password : ""};
-
+    this.todayStockb = {date :'',adjClose :'',close:'',high:'',open:'',volume:'' ,low:''};
+    this.todayStocka = {date :'',adjClose :'',close:'',high:'',open:'',volume:'' ,low:''};
+    this.value ='NSE';
+   
   }
 
   ngOnInit(): void {
-    this.service.NSE().subscribe((result:any)=>{
+    this.service.gettingNseByDate().subscribe((result:any)=>{
+      this.todayStocka = result ;
       this.todayStock = result;
-      console.log(result)});  }
+      console.log(result)}); 
+      this.service.gettingBseByDate().subscribe((result:any)=>{
+        this.todayStockb = result;
+        console.log(result)});
+     
+     }
   
 
-  redirect(): void {
-    this.router.navigate(['register']);
-  }
+
   
  async loginSubmit(loginForm: any) {
     
@@ -55,9 +65,25 @@ regSubmit():void{
 }
 
 login(){
-  if(this.service.name === null)
-     return true ;
-  else
+  if(this.service.name === null){ 
+    return true ;
+  }
+  else{
+   
      return false;
+}
+}
+
+valReturn(){
+  if(this.value === 'NSE'){
+    this.todayStock =this.todayStocka;
+  }
+  else{
+    this.todayStock=this.todayStockb;
+  }
+        
+}
+logOut(){
+  this.service.name=null;
 }
 }

@@ -5,16 +5,21 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ServiceService {
   name : any;
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    this.name=null;
+   }
   registerCust(customer : any) : any { 
     return this.httpClient.post('StockMarketIndex/webapi/myresource/registerUser' , customer);
   }
   loginCust(email : any ,password:any ) : any { 
     return this.httpClient.get('StockMarketIndex/webapi/myresource/loginUser/' + email + '/'+ password).toPromise();
   }
-  NSE(){
+  gettingNseByDate(){
     return this.httpClient.get('StockMarketIndex/webapi/myresource/nse');
   }
+  gettingBseByDate(){
+    return this.httpClient.get('StockMarketIndex/webapi/myresource/bse');
 
+  }
 
 }

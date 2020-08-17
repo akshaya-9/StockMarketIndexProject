@@ -1,36 +1,42 @@
-<div  *ngIf='!login();  else elseBlock'>
+<div  *ngIf='login();  else else1Block'>
 
 <button class="button1" onclick="document.getElementById('id02').style.display='block'" style="width:auto; float: right;     margin-right: 69px">Register</button>
 <button class="button1" onclick="document.getElementById('id01').style.display='block'" style="width:auto; float: right;     margin-right: 69px">Login</button>
 </div>
-<ng-template #elseBlock>
-<button class="button1"  style="width:auto; float: right;     margin-right: 69px">Logout</button>
+<ng-template #else1Block>
+    <div style="margin-top: 10px; ">
+    <span style="margin-left: 900px; margin-top: 10px;   font-size: 20px;">Hi,{{service.name}} !!!</span>
+<button class="button1" (click)='logOut()' style="width:auto; float: right;     margin-right: 69px">Logout</button>
+</div>
 </ng-template>
-
-
-
 
 <div id="id02" class="modal">
   
-  <form class="modal-content animate" action="/action_page.php" method="post" style="    width: 361px;     ">
+  <form class="modal-content animate" #RegForm="ngForm" method="post" style="    width: 361px;     ">
   
 
     <div class="container" style="    width: 307px;">
      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn" style="  float:right; border:none">X</button>
    
      <label for="uname"  style="margin-top:10px;"><b>Username</b></label>
-      <input type="text" class="form-input" [(ngModel)]="userr.userName" placeholder="Enter Username" name="uname" required>
+      <input type="text" class="form-input form-control" [(ngModel)]="userr.userName"  #username="ngModel"  maxlength=10 minlength=6  placeholder="Enter Username" name="uname" required>
     
       <label for="email" style="margin-top:10px;"><b>Email</b></label>
-      <input type="text" class="form-input" [(ngModel)]="userr.email" placeholder="Enter Email" name="Email" required>
+      <input type="text" class="form-input form-control" [(ngModel)]="userr.email"  #email="ngModel"  maxlength=10 minlength=6 placeholder="Enter Email" name="Email" required>
 
       <label for="psw"><b>Password</b></label>
-      <input type="password" class="form-input" [(ngModel)]="userr.password"placeholder="Enter Password" name="psw" required>
+      <input type="password" class="form-input form-control" [(ngModel)]="userr.password"  #password="ngModel"  maxlength=10 minlength=6  placeholder="Enter Password" name="psw" required>
         
       <button type="submit" onclick="document.getElementById('id02').style.display='none'" class="btn" style="background-color: black; color: white; align-items: center;     margin-left: 98px;" (click) = "regSubmit()" >Register</button>
      
     </div>
+    <div class="text-danger">
+        <div *ngIf="RegForm.touched && username.errors?.required">Please enter username</div>
 
+        <div *ngIf="RegForm.touched && email.errors?.required">Please enter email</div>
+           
+        <div *ngIf="RegForm.touched && password.errors?.required">Please enter password</div>
+        </div>
   
   </form>
 </div>
@@ -64,17 +70,21 @@ window.onclick = function(event) {
       
      
      <label for="email" style="margin-top:10px;"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" class="form-input" [(ngModel)]="user.email"   name="uname" required>
+      <input type="text" placeholder="Enter Email" class="form-input form-control" [(ngModel)]="user.email"  #email="ngModel"  maxlength=10 minlength=6  name="email" required>
 
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" class="form-input" [(ngModel)]="user.password"  required>
+      <input type="password" placeholder="Enter Password" name="psw" class="form-input form-control"  #password="ngModel"  maxlength=10 minlength=6  [(ngModel)]="user.password"  required>
         
       <button type="submit" onclick="document.getElementById('id01').style.display='none'" class="btn" style="background-color: black; color: white; align-items: center;     margin-left: 98px;" >Login</button>
      
     </div>
-
+    <div class="text-danger">
+        <div *ngIf="loginForm.touched && email.errors?.required">Please enter email</div>
+        <div *ngIf="loginForm.touched && password.errors?.required">Please enter password</div>
+        </div>
   
   </form>
+  
 </div>
 
 <script>
@@ -96,21 +106,25 @@ window.onclick = function(event) {
 
 
     <div class="container">
-    <div class="dropdown"  style="    margin-left: 30px; margin-top: 30px;">
-        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="padding-right:10px;">NSE
-        <span class="caret" style="margin-left:30px"></span></button>
-        <ul class="dropdown-menu">
-          <li><a href="#">BSE</a></li>
-         
-        </ul>
-      </div>
-    
+        <select [(ngModel)]='value' (click)='valReturn()' class="btn btn-default dropdown-toggle"  style="    margin-left: 30px; margin-top: 30px;" id="mySelect">
+            <option value="NSE" id="NSE">NSE</option>
+            <option value="BSE" id="BSE">BSE</option>
+            
+          </select>
+   
+
+        
+        
+       
+   
     <p style=" font-size: 28px;  margin-left: 30px;"><b>NIFTY 50</b></p>
     <hr style=" border-top: 2px dashed grey;">
+   
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
-                <b style="    font-size: 50px;margin-left: 17px;">{{todayStock.open}}</b><br>
+    
+                <b style="    font-size: 50px;margin-left: 17px;">{{todayStock.open | number : '2.2-2'}}</b><br>
                 
                 <i class="fa fa-angle-up" style="font-size:40px;color: teal;"> </i>
                 <b style="color: teal;font-size: 25px;margin-left: 12px; margin-top: 3px;">23.40(0.21%)</b>
@@ -118,17 +132,24 @@ window.onclick = function(event) {
             </div>
             <div class="col-sm-5" style="    margin-left: 273px;font-size: 15px;">
                 <p class="gray"> Day Range</p>
+                <span>{{todayStock.high | number : '2.2-2'}}</span>
+                <span style=" margin-left: 337px;">{{todayStock.low  | number : '2.2-2'}}</span>
                <p class="gray" style="padding-top: 10px;">L</p> 
                <h3 style="color : teal; margin-top: -40px;
                margin-left: 127px;
                margin-bottom: 15px;">	&#9679;</h3>
-               <hr style="border-top:2px solid black;     margin-top: -22px; margin-left: 26px; width: 401px">  <p class="gray" style="    float: right;margin-top: -31px;">H</p>
+               <hr style="border-top:2px solid black;     margin-top: -22px; margin-left: 26px; width: 401px"> 
+             
+               <p class="gray" style="    float: right;margin-top: -31px;">H</p>
                <p class="gray"> 52 Week Range</p>
+               <span>{{7510.11}}</span>
+                <span style=" margin-left: 337px;">12,430.50</span>
                <p class="gray" style="padding-top: 10px;">L</p> 
                <h3 style="color : teal; margin-top: -40px;
                margin-left: 133px;
                margin-bottom: 15px;">	&#9679;</h3>
-               <hr style="border-top:2px solid black;     margin-top: -22px; margin-left: 26px; width: 401px">  <p class="gray" style="    float: right;margin-top: -31px;">H</p>
+               <hr style="border-top:2px solid black;     margin-top: -22px; margin-left: 26px; width: 401px">
+               <p class="gray" style="    float: right;margin-top: -31px;">H</p>
             </div>
         </div>
         <hr style=" border-top: 2px dashed grey;">
@@ -141,17 +162,17 @@ window.onclick = function(event) {
                         <div class="col-sm-5 " style="    margin-top: 23px;">
                             <div  style="margin-bottom: -20px;">
                                 <p class="gray" style=" display:inline-block;    margin-right: 282px; margin-left: 24px">Open</p>
-                                <b style="display:inline-block;">{{todayStock.open}}</b></div>
+                                <b style="display:inline-block;">{{todayStock.open | number : '2.2-2'}}</b></div>
                                 <hr style=" border-top: 1px solid grey;">
 
                                 <div  style="margin-bottom: -20px;">
                                     <p class="gray" style=" display:inline-block;    margin-right: 230px; margin-left: 24px">Previously Close</p>
-                                    <b style="display:inline-block;">{{todayStock.close}}</b></div>
+                                    <b style="display:inline-block;">{{todayStock.close | number : '2.2-2'}}</b></div>
                                     <hr style=" border-top: 1px solid grey;">
 
                                 <div  style="margin-bottom: -20px;">
                                 <p  class="gray" style=" display:inline-block;    margin-right: 282px; margin-left: 24px">Day High</p>
-                                <b style="display:inline-block;">{{todayStock.high}}</b></div>
+                                <b style="display:inline-block;">{{todayStock.high | number : '2.2-2'}}</b></div>
                                 <hr style=" border-top: 1px solid grey;">
                             </div>
 
@@ -159,7 +180,7 @@ window.onclick = function(event) {
                             <div class="col-sm-5 " style="      margin-left: 156px; margin-top: 23px;">
                                 <div  style="margin-bottom: -20px;">
                                     <p class="gray" style=" display:inline-block;    margin-right: 282px; margin-left: 24px">Day Low</p>
-                                    <b style="display:inline-block;">{{todayStock.low}}</b></div>
+                                    <b style="display:inline-block;">{{todayStock.low | number : '2.2-2'}}</b></div>
                                     <hr style=" border-top: 1px solid grey;">
                                     <div  style="margin-bottom: -20px;">
                                     <p class="gray" style=" display:inline-block;    margin-right: 282px; margin-left: 24px">52 Week High</p>
@@ -184,13 +205,13 @@ window.onclick = function(event) {
                                 <p style="    margin-top: -34px;
                                 font-size: 24px;">NIFTY 50</p>
                                 <p style="    margin-left: -9px;    margin-top: -24px;
-                                font-size: 35px;"> 11,325.10</p>
+                                font-size: 35px;"> {{todayStock.open  | number : '2.2-2'}}</p>
                             </div>
                             <div class="right" style="float: right;
                             margin-top: 101px;
                             margin-right: -146px;">
                                 <p style="margin-top: -106px;color: #acb0b3;font-size: 12px;">PREV CLOSE</p>
-                                <p style="margin-top: -40px;">10,563.19</p>
+                                <p style="margin-top: -40px;">{{todayStock.adjClose  | number : '2.2-2'}}</p>
                             </div>
                             <br>
                             <div class="line"></div>

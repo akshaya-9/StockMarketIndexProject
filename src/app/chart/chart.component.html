@@ -2,19 +2,16 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-12 bg-primary"  style="height: 600px;">
+        <div class="col-sm-12 bg-primary"  style="height: 650px;">
             <div class="container">
-                <div class="dropdown"  style="    margin-left: 30px; margin-top: 30px;">
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="padding-right:10px;">Reliance Industries Ltd.
-                    <span class="caret" style="margin-left:30px"></span></button>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Tata Steel Industries Ltd.</a></li>
-                      <li><a href="#">Eichermont Industries Ltd.</a></li>
-                      <li><a href="#">Ashokley Industries Ltd. </a></li>
-                      <li><a href="#">Cipla Industries Ltd.</a></li>
-                      
-                    </ul>
-                  </div>
+              <select id="mySelect1" class="btn btn-default dropdown-toggle"   style=" margin-left: 30px; margin-top: 30px; padding-right:10px;">
+                <option value="apple">Reliance Industries Ltd.</option>              
+                  <option value="orange">Tata Steel Industries Ltd.</option>
+                <option value="pineapple">Eichermont Industries Ltd.</option>
+                <option value="banana">Ashokley Industries Ltd.</option>
+                <option value="banana">Cipla Industries Ltd.</option>
+              </select>
+                
                   <h4 style="color:white; text-align: center;     margin-bottom: 10px; margin-top: -21px;">
                     CHARTS
                   </h4>
@@ -33,6 +30,7 @@
                   margin-top: -20px;
                   margin-left: 37px;
                   width: 1065px;
+                  margin-bottom: 30px;
                   padding-top: 19px;">
 <button style="background-color: #698DAE;  margin-top: -10px;" type="button" class="btn  btn-sm">1D</button>
 <button style="background-color: #698DAE;  margin-top: -10px;     margin-left: 10px;" type="button" class="btn  btn-sm">1W</button>
@@ -44,6 +42,14 @@
 <button style="background-color: #698DAE;  margin-top: -10px;     margin-left: 10px;" type="button" class="btn  btn-sm">5Y</button>
 <button style="background-color: #698DAE;  margin-top: -10px;     margin-left: 10px;" type="button" class="btn  btn-sm">ALL</button>
                                            
+                </div>
+                <div style="margin-bottom: 10px;">
+                  <span style="margin-left: 37px;">27 june 2020</span>
+                  <span  style="margin-left: 30px;">Open:{{todayStock.open | number : '2.2-2'}}</span>
+                  <span  style="margin-left: 30px;">High:{{todayStock.high | number : '2.2-2'}}</span>
+                  <span  style="margin-left: 30px;">Low:{{todayStock.low | number : '2.2-2'}}</span>
+                  <span  style="margin-left: 30px;">Close:{{todayStock.close | number : '2.2-2'}}</span>
+                  <span  style="margin-left: 30px;">Volume:{{todayStock.volume | number : '2.2-2'}}</span>
                 </div>
                 <div class="container" style="height: 400px; background-color: white; width: 1064px; ">
                    
